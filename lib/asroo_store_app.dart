@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_app/core/app/connectivity_controller.dart';
 import 'package:store_app/core/app/env.variables.dart';
 import 'package:store_app/core/common/screens/no_network_screnns.dart';
@@ -12,27 +13,31 @@ class AsrooStoreApp extends StatelessWidget {
       valueListenable: ConnectivityController.instance.isConnected,
       builder: (_, value, child) {
         if (value) {
-          return MaterialApp(
-            builder: (_, widget) {
-              return Scaffold(
-                body: Builder(
-                  builder: (context) {
-                    ConnectivityController.instance.init();
-                    return widget!;
-                  },
+          return ScreenUtilInit(
+            designSize: const Size(375, 812),
+            minTextAdapt: true,
+            child: MaterialApp(
+              builder: (_, widget) {
+                return Scaffold(
+                  body: Builder(
+                    builder: (context) {
+                      ConnectivityController.instance.init();
+                      return widget!;
+                    },
+                  ),
+                );
+              },
+              title: 'Asroo Store',
+              debugShowCheckedModeBanner: EnvVariable.instance.debugMode,
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                useMaterial3: true,
+              ),
+              home: Scaffold(
+                appBar: AppBar(
+                  centerTitle: true,
+                  title: const Text("Home"),
                 ),
-              );
-            },
-            title: 'Asroo Store',
-            debugShowCheckedModeBanner: EnvVariable.instance.debugMode,
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
-            ),
-            home: Scaffold(
-              appBar: AppBar(
-                centerTitle: true,
-                title: const Text("Home"),
               ),
             ),
           );
