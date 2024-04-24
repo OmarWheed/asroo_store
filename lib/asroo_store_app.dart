@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_app/core/app/connectivity_controller.dart';
 import 'package:store_app/core/app/env.variables.dart';
 import 'package:store_app/core/common/screens/no_network_screnns.dart';
+import 'package:store_app/core/style/fonts/font_family_helper.dart';
+import 'package:store_app/core/style/fonts/font_weight_helper.dart';
 
 class AsrooStoreApp extends StatelessWidget {
   const AsrooStoreApp({super.key});
@@ -37,6 +39,41 @@ class AsrooStoreApp extends StatelessWidget {
                 appBar: AppBar(
                   centerTitle: true,
                   title: const Text("Home"),
+                ),
+                body: const Center(
+                  child: Column(
+                    children: [
+                      //!Old
+                      Text(
+                        "Old Test Font",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        "اختبار الخط ",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      SizedBox(
+                        height: 90,
+                      ),
+                      //!New
+                      Text(
+                        "Old Test Font",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: FontFamilyHelper.poppinsEnglish,
+                          fontWeight: FontWeightHelper.regular,
+                        ),
+                      ),
+                      Text(
+                        "اختبار الخط ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: FontFamilyHelper.cairoArabic,
+                          fontWeight: FontWeightHelper.regular,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
