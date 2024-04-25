@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_app/core/app/connectivity_controller.dart';
 import 'package:store_app/core/app/env.variables.dart';
 import 'package:store_app/core/common/screens/no_network_screnns.dart';
+import 'package:store_app/core/routes/app_routes.dart';
 import 'package:store_app/core/style/fonts/font_family_helper.dart';
 import 'package:store_app/core/style/fonts/font_weight_helper.dart';
 
@@ -19,6 +20,8 @@ class AsrooStoreApp extends StatelessWidget {
             designSize: const Size(375, 812),
             minTextAdapt: true,
             child: MaterialApp(
+              initialRoute: PagesName.testPageOne,
+              onGenerateRoute: AppRoutes.onGenerateRoute,
               builder: (_, widget) {
                 return Scaffold(
                   body: Builder(
