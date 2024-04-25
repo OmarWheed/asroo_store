@@ -8,7 +8,6 @@ class TestPageOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple,
       appBar: AppBar(
         title: const Text('TestPageOne'),
       ),
@@ -19,7 +18,7 @@ class TestPageOne extends StatelessWidget {
           },
           child: const Text(
             'GoTestPageTwo',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.black),
           ),
         ),
       ),

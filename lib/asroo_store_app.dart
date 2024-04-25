@@ -6,6 +6,7 @@ import 'package:store_app/core/common/screens/no_network_screnns.dart';
 import 'package:store_app/core/routes/app_routes.dart';
 import 'package:store_app/core/style/fonts/font_family_helper.dart';
 import 'package:store_app/core/style/fonts/font_weight_helper.dart';
+import 'package:store_app/core/style/theme/app_theme.dart';
 
 class AsrooStoreApp extends StatelessWidget {
   const AsrooStoreApp({super.key});
@@ -20,6 +21,7 @@ class AsrooStoreApp extends StatelessWidget {
             designSize: const Size(375, 812),
             minTextAdapt: true,
             child: MaterialApp(
+              theme: themeDark(),
               initialRoute: PagesName.testPageOne,
               onGenerateRoute: AppRoutes.onGenerateRoute,
               builder: (_, widget) {
@@ -34,10 +36,6 @@ class AsrooStoreApp extends StatelessWidget {
               },
               title: 'Asroo Store',
               debugShowCheckedModeBanner: EnvVariable.instance.debugMode,
-              theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-                useMaterial3: true,
-              ),
               home: Scaffold(
                 appBar: AppBar(
                   centerTitle: true,
