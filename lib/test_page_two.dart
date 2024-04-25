@@ -6,7 +6,6 @@ class TestPageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
       appBar: AppBar(
         title: const Text('TestPageTwo'),
       ),
