@@ -28,23 +28,19 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  #internet connection
+  animate_do: ^3.3.4
   connectivity_plus: ^5.0.2
   cupertino_icons: ^1.0.6
-  #firebase
   firebase_core: ^2.30.0
   flutter:
     sdk: flutter
   flutter_dotenv: ^5.1.0
-  #lang
   flutter_localization: ^0.2.0
-  #splash
   flutter_native_splash: ^2.4.0
-  #Responsive
   flutter_screenutil: ^5.9.0
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
-  #icon 
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^3.0.0
   flutter_test:
@@ -77,7 +73,7 @@ flutter:
     - .env.prod
     - lang/ar.json
     - lang/en.json
-  # fonts 
+  # fonts
   fonts:
     #Arabic
     - family: Cairo
