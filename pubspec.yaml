@@ -28,24 +28,29 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  #internet connection
   connectivity_plus: ^5.0.2
   cupertino_icons: ^1.0.6
+  #firebase
   firebase_core: ^2.30.0
   flutter:
     sdk: flutter
   flutter_dotenv: ^5.1.0
-  
-  
+  #lang
+  flutter_localization: ^0.2.0
+  #splash
+  flutter_native_splash: ^2.4.0
+  #Responsive
   flutter_screenutil: ^5.9.0
-  flutter_native_splash: ^2.4.0  
 
 dev_dependencies:
+  #icon 
+  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
   very_good_analysis: ^5.1.0
-  flutter_launcher_icons: ^0.13.1
-
+#icon option
 flutter_launcher_icons:
   android: true
   ios: true
@@ -67,10 +72,11 @@ flutter:
     - assets/images/core/
     - .env.dev
     - .env.prod
-
-
+    - lang/ar.json
+    - lang/en.json
+  # fonts 
   fonts:
-  #Arabic
+    #Arabic
     - family: Cairo
       fonts:
         - asset: assets/fonts/arabic/cairo/Cairo-Bold.ttf
@@ -80,7 +86,7 @@ flutter:
         - asset: assets/fonts/arabic/cairo/Cairo-Regular.ttf
           weight: 400
           style: italic
-  #English
+    #English
     - family: Poppins
       fonts:
         - asset: assets/fonts/english/poppins/Poppins-Medium.ttf

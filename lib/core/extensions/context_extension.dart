@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/language/app_localizations.dart';
 
 extension ContextExtension on BuildContext {
+  //Translate
+  String translate(String key) {
+    return AppLocalizations.of(this)!.translate(key).toString();
+  }
+
   Future pushName(String name, {Object? arg}) {
     return Navigator.of(this).pushNamed(name, arguments: arg);
   }
