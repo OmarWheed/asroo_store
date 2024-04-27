@@ -5,7 +5,6 @@ import 'package:store_app/core/app/env.variables.dart';
 import 'package:store_app/core/common/screens/no_network_screnns.dart';
 import 'package:store_app/core/language/app_localizations_setup.dart';
 import 'package:store_app/core/routes/app_routes.dart';
-import 'package:store_app/core/style/theme/app_theme.dart';
 
 class AsrooStoreApp extends StatelessWidget {
   const AsrooStoreApp({super.key});
@@ -20,7 +19,6 @@ class AsrooStoreApp extends StatelessWidget {
             designSize: const Size(375, 812),
             minTextAdapt: true,
             child: MaterialApp(
-                theme: themeDark(),
 
                 //localization
 
@@ -34,6 +32,7 @@ class AsrooStoreApp extends StatelessWidget {
                 onGenerateRoute: AppRoutes.onGenerateRoute,
                 builder: (_, widget) {
                   //when button or click in any of the screens the text form will close
+
                   return GestureDetector(
                     onTap: () {
                       FocusManager.instance.primaryFocus?.unfocus();
