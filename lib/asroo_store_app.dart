@@ -3,9 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_app/core/app/connectivity_controller.dart';
 import 'package:store_app/core/app/env.variables.dart';
 import 'package:store_app/core/common/screens/no_network_screnns.dart';
+import 'package:store_app/core/language/app_localizations_setup.dart';
 import 'package:store_app/core/routes/app_routes.dart';
-import 'package:store_app/core/style/fonts/font_family_helper.dart';
-import 'package:store_app/core/style/fonts/font_weight_helper.dart';
 import 'package:store_app/core/style/theme/app_theme.dart';
 
 class AsrooStoreApp extends StatelessWidget {
@@ -21,63 +20,42 @@ class AsrooStoreApp extends StatelessWidget {
             designSize: const Size(375, 812),
             minTextAdapt: true,
             child: MaterialApp(
-              theme: themeDark(),
-              initialRoute: PagesName.testPageOne,
-              onGenerateRoute: AppRoutes.onGenerateRoute,
-              builder: (_, widget) {
-                return Scaffold(
-                  body: Builder(
-                    builder: (context) {
-                      ConnectivityController.instance.init();
-                      return widget!;
+                theme: themeDark(),
+
+                //localization
+
+                locale: const Locale("ar"),
+                localeResolutionCallback:
+                    AppLocalizationsSetup.localeResolutionCallback,
+                supportedLocales: AppLocalizationsSetup.supportedLocales,
+                localizationsDelegates:
+                    AppLocalizationsSetup.localizationsDelegates,
+                initialRoute: PagesName.testPageOne,
+                onGenerateRoute: AppRoutes.onGenerateRoute,
+                builder: (_, widget) {
+                  //when button or click in any of the screens the text form will close
+                  return GestureDetector(
+                    onTap: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
                     },
+                    child: Scaffold(
+                      body: Builder(
+                        builder: (context) {
+                          ConnectivityController.instance.init();
+                          return widget!;
+                        },
+                      ),
+                    ),
+                  );
+                },
+                title: 'Asroo Store',
+                debugShowCheckedModeBanner: EnvVariable.instance.debugMode,
+                home: Scaffold(
+                  appBar: AppBar(
+                    centerTitle: true,
+                    title: const Text("Home"),
                   ),
-                );
-              },
-              title: 'Asroo Store',
-              debugShowCheckedModeBanner: EnvVariable.instance.debugMode,
-              home: Scaffold(
-                appBar: AppBar(
-                  centerTitle: true,
-                  title: const Text("Home"),
-                ),
-                body: const Center(
-                  child: Column(
-                    children: [
-                      //!Old
-                      Text(
-                        "Old Test Font",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      Text(
-                        "اختبار الخط ",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      SizedBox(
-                        height: 90,
-                      ),
-                      //!New
-                      Text(
-                        "Old Test Font",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: FontFamilyHelper.poppinsEnglish,
-                          fontWeight: FontWeightHelper.regular,
-                        ),
-                      ),
-                      Text(
-                        "اختبار الخط ",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: FontFamilyHelper.cairoArabic,
-                          fontWeight: FontWeightHelper.regular,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+                )),
           );
         } else {
           return MaterialApp(
