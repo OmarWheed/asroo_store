@@ -20,20 +20,20 @@ class AsrooStoreApp extends StatelessWidget {
             designSize: const Size(375, 812),
             minTextAdapt: true,
             child: MaterialApp(
-                theme: themeDark(),
 
                 //localization
-
-                locale: const Locale("ar"),
+                theme: themeDark(),
+                locale: const Locale("en"),
                 localeResolutionCallback:
                     AppLocalizationsSetup.localeResolutionCallback,
                 supportedLocales: AppLocalizationsSetup.supportedLocales,
                 localizationsDelegates:
                     AppLocalizationsSetup.localizationsDelegates,
-                initialRoute: PagesName.testPageOne,
+                initialRoute: PagesName.loginScreen,
                 onGenerateRoute: AppRoutes.onGenerateRoute,
                 builder: (_, widget) {
                   //when button or click in any of the screens the text form will close
+
                   return GestureDetector(
                     onTap: () {
                       FocusManager.instance.primaryFocus?.unfocus();
