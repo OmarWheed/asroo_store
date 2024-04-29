@@ -5,6 +5,7 @@ import 'package:store_app/core/app/env.variables.dart';
 import 'package:store_app/core/common/screens/no_network_screnns.dart';
 import 'package:store_app/core/language/app_localizations_setup.dart';
 import 'package:store_app/core/routes/app_routes.dart';
+import 'package:store_app/core/style/theme/app_theme.dart';
 
 class AsrooStoreApp extends StatelessWidget {
   const AsrooStoreApp({super.key});
@@ -21,14 +22,14 @@ class AsrooStoreApp extends StatelessWidget {
             child: MaterialApp(
 
                 //localization
-
-                locale: const Locale("ar"),
+                theme: themeDark(),
+                locale: const Locale("en"),
                 localeResolutionCallback:
                     AppLocalizationsSetup.localeResolutionCallback,
                 supportedLocales: AppLocalizationsSetup.supportedLocales,
                 localizationsDelegates:
                     AppLocalizationsSetup.localizationsDelegates,
-                initialRoute: PagesName.testPageOne,
+                initialRoute: PagesName.loginScreen,
                 onGenerateRoute: AppRoutes.onGenerateRoute,
                 builder: (_, widget) {
                   //when button or click in any of the screens the text form will close

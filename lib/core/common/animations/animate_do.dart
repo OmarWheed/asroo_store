@@ -43,56 +43,56 @@ class CustomFadeInUp extends StatelessWidget {
   }
 }
 
-// class CustomFadeInLeft extends StatelessWidget {
-//   const CustomFadeInLeft({
-//     required this.child,
-//     required this.duration,
-//     super.key,
-//   });
+class CustomFadeInLeft extends StatelessWidget {
+  const CustomFadeInLeft({
+    required this.child,
+    required this.duration,
+    super.key,
+  });
 
-//   final Widget child;
+  final Widget child;
 
-//   final int duration;
+  final int duration;
 
-//   @override
-//   Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
 //     return SharedPref().getString(PrefKeys.language) == 'ar'
-//         ? FadeInLeft(
-//             delay: const Duration(milliseconds: 300),
-//             duration: Duration(milliseconds: duration),
-//             child: child,
-//           )
+    return FadeInLeft(
+      delay: const Duration(milliseconds: 300),
+      duration: Duration(milliseconds: duration),
+      child: child,
+    );
 //         : FadeInRight(
 //             delay: const Duration(milliseconds: 300),
 //             duration: Duration(milliseconds: duration),
 //             child: child,
 //           );
-//   }
-// }
+  }
+}
 
-// class CustomFadeInRight extends StatelessWidget {
-//   const CustomFadeInRight({
-//     required this.child,
-//     required this.duration,
-//     super.key,
-//   });
+class CustomFadeInRight extends StatelessWidget {
+  const CustomFadeInRight({
+    required this.child,
+    required this.duration,
+    super.key,
+  });
 
-//   final Widget child;
+  final Widget child;
 
-//   final int duration;
+  final int duration;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return SharedPref().getString(PrefKeys.language) == 'ar'
-//         ? FadeInRight(
-//             delay: const Duration(milliseconds: 300),
-//             duration: Duration(milliseconds: duration),
-//             child: child,
-//           )
-//         : FadeInLeft(
-//             delay: const Duration(milliseconds: 300),
-//             duration: Duration(milliseconds: duration),
-//             child: child,
-//           );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    // return SharedPref().getString(PrefKeys.language) == 'ar'
+    return FadeInRight(
+      delay: const Duration(milliseconds: 300),
+      duration: Duration(milliseconds: duration),
+      child: child,
+      //   )
+      // : FadeInLeft(
+      //     delay: const Duration(milliseconds: 300),
+      //     duration: Duration(milliseconds: duration),
+      //     child: child,
+    );
+  }
+}
