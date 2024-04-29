@@ -3,6 +3,7 @@
         "asroo",
         "Cariable",
         "dotenv",
+        "screenutil",
         "unfocus"
     ]
 }

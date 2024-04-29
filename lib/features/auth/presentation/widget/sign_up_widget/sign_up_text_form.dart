@@ -1,26 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:store_app/core/common/animations/animate_do.dart';
 import 'package:store_app/core/common/widget/custom_text_field.dart';
 import 'package:store_app/core/extensions/context_extension.dart';
 import 'package:store_app/core/language/lang_keys.dart';
 import 'package:store_app/core/utils/app_regex.dart';
 
-class LoginTextForm extends StatefulWidget {
-  const LoginTextForm({super.key});
+import '../../../../../core/common/animations/animate_do.dart';
+
+class SignUpTextForm extends StatefulWidget {
+  const SignUpTextForm({super.key});
 
   @override
-  State<LoginTextForm> createState() => _LoginTextFormState();
+  State<SignUpTextForm> createState() => _SignUpTextFormState();
 }
 
-class _LoginTextFormState extends State<LoginTextForm> {
-  bool isVisible = true;
+class _SignUpTextFormState extends State<SignUpTextForm> {
+  bool showPassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Form(
       child: Column(
         children: [
+          CustomFadeInRight(
+            duration: 200,
+            child: CustomTextField(
+              controller: TextEditingController(),
+              hintText: context.translate(LangKeys.fullName),
+              keyboardType: TextInputType.text,
+              validator: (input) {
+                if (input == null || input.isEmpty || input.length < 4) {
+                  return context.translate(LangKeys.validName);
+                }
+
+                return null;
+              },
+            ),
+          ),
+          SizedBox(
+            height: 25.h,
+          ),
           CustomFadeInRight(
             duration: 200,
             child: CustomTextField(
@@ -45,15 +64,15 @@ class _LoginTextFormState extends State<LoginTextForm> {
               suffixIcon: IconButton(
                   onPressed: () {
                     setState(() {
-                      isVisible = !isVisible;
+                      showPassword = !showPassword;
                     });
                   },
                   icon: Icon(
-                    isVisible ? Icons.visibility_off : Icons.visibility,
+                    showPassword ? Icons.visibility_off : Icons.visibility,
                     color: context.color.textColor,
                   )),
               controller: TextEditingController(),
-              obscureText: isVisible,
+              obscureText: showPassword,
               hintText: context.translate(LangKeys.password),
               keyboardType: TextInputType.visiblePassword,
               validator: (input) {
