@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/asroo_store_app.dart';
+import 'package:store_app/core/app/bloc_observer.dart';
 import 'package:store_app/core/app/env.variables.dart';
 import 'package:store_app/firebase_options.dart';
 
@@ -13,6 +15,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Bloc.observer = AppBlocObserver();
+
   //Keep app in portrait mode
   SystemChrome.setPreferredOrientations(
     [
