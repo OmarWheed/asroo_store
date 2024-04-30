@@ -75,7 +75,7 @@ class SharedPref {
   }
 
   ///Below method is to clear the SharedPreference.
-  Future<dynamic> clearPreferences() async {
+  Future<dynamic> clearPreferences(String language) async {
     await sharedPreferences.clear();
   }
 }
