@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:store_app/core/app/app_cubit/cubit/app_cubit_cubit.dart';
 import 'package:store_app/core/app/connectivity_controller.dart';
 import 'package:store_app/core/app/env.variables.dart';
 import 'package:store_app/core/common/screens/no_network_screnns.dart';
+import 'package:store_app/core/di/injection_core.dart';
 import 'package:store_app/core/language/app_localizations_setup.dart';
 import 'package:store_app/core/routes/app_routes.dart';
+import 'package:store_app/core/services/shared/pref_keys.dart';
+import 'package:store_app/core/services/shared/shared_pref.dart';
 import 'package:store_app/core/style/theme/app_theme.dart';
 
 class AsrooStoreApp extends StatelessWidget {
@@ -16,46 +21,59 @@ class AsrooStoreApp extends StatelessWidget {
       valueListenable: ConnectivityController.instance.isConnected,
       builder: (_, value, child) {
         if (value) {
-          return ScreenUtilInit(
-            designSize: const Size(375, 812),
-            minTextAdapt: true,
-            child: MaterialApp(
+          return BlocProvider(
+            create: (context) => sl<AppCubitCubit>()
+              ..changeThemeMode(
+                sharedPref: SharedPref().getBoolean(PrefKeys.themeMode),
+              )
+              ..getSavedLanguage(),
+            child: ScreenUtilInit(
+              designSize: const Size(375, 812),
+              minTextAdapt: true,
+              child: BlocBuilder<AppCubitCubit, AppCubitState>(
+                builder: (context, state) {
+                  final cubit = context.read<AppCubitCubit>();
+                  return MaterialApp(
 
-                //localization
-                theme: themeDark(),
-                locale: const Locale("en"),
-                localeResolutionCallback:
-                    AppLocalizationsSetup.localeResolutionCallback,
-                supportedLocales: AppLocalizationsSetup.supportedLocales,
-                localizationsDelegates:
-                    AppLocalizationsSetup.localizationsDelegates,
-                initialRoute: PagesName.loginScreen,
-                onGenerateRoute: AppRoutes.onGenerateRoute,
-                builder: (_, widget) {
-                  //when button or click in any of the screens the text form will close
+                      //localization
+                      theme: cubit.isDark ? themeLight() : themeDark(),
+                      locale: Locale(cubit.currentLanguage),
+                      localeResolutionCallback:
+                          AppLocalizationsSetup.localeResolutionCallback,
+                      supportedLocales: AppLocalizationsSetup.supportedLocales,
+                      localizationsDelegates:
+                          AppLocalizationsSetup.localizationsDelegates,
+                      initialRoute: PagesName.loginScreen,
+                      onGenerateRoute: AppRoutes.onGenerateRoute,
+                      builder: (_, widget) {
+                        //when button or click in any of the screens the text form will close
 
-                  return GestureDetector(
-                    onTap: () {
-                      FocusManager.instance.primaryFocus?.unfocus();
-                    },
-                    child: Scaffold(
-                      body: Builder(
-                        builder: (context) {
-                          ConnectivityController.instance.init();
-                          return widget!;
-                        },
-                      ),
-                    ),
-                  );
+                        return GestureDetector(
+                          onTap: () {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                          },
+                          child: Scaffold(
+                            body: Builder(
+                              builder: (context) {
+                                ConnectivityController.instance.init();
+                                return widget!;
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                      title: 'Asroo Store',
+                      debugShowCheckedModeBanner:
+                          EnvVariable.instance.debugMode,
+                      home: Scaffold(
+                        appBar: AppBar(
+                          centerTitle: true,
+                          title: const Text("Home"),
+                        ),
+                      ));
                 },
-                title: 'Asroo Store',
-                debugShowCheckedModeBanner: EnvVariable.instance.debugMode,
-                home: Scaffold(
-                  appBar: AppBar(
-                    centerTitle: true,
-                    title: const Text("Home"),
-                  ),
-                )),
+              ),
+            ),
           );
         } else {
           return MaterialApp(
